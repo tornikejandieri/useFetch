@@ -2,13 +2,20 @@ import { useEffect, useState } from "react";
 
 export function useFetch(url: string){
   const [data, setData] = useState<any | null>([])
-
+  const [loading, setLoading] = useState<boolean>(false)
+  
+  async function getData(){
+    setLoading(true)
+    const res = fetch(url)
+    const data = res.json()
+    setData(data)
+    console.log(data)
+    setLoading(false)
+  }
+  
   useEffect(() => {
-    fetch(url)
-    .then(resp => {return resp.json()})
-    .then(data => {setData(data)})
-    
+    getData()
   }, [url])
 
-  return { data }
+  return { data, loading }
 }
