@@ -6,8 +6,8 @@ export function useFetch(url: string){
   
   async function getData(){
     setLoading(true)
-    const res = fetch(url)
-    const data = res.json()
+    const res = await fetch(url)
+    const data = await res.json()
     setData(data)
     console.log(data)
     setLoading(false)
