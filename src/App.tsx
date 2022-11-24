@@ -1,25 +1,18 @@
-import { useFetch } from './useFetch'
-
-// key should be unique
-// this API link doesnt support unique id's
+import { useFetch } from "./useFetch"
 
 function App() {
-  const url = 'https://restcountries.com/v2/name/Georgia'
+  const url = "https://api.punkapi.com/v2/beers"
   const { data } = useFetch(url)
-  
+  console.log(data)
+
   return (
-    <div className="App">  
-     {
-      data.map((country: any | null) => (
-        <div key={2}>
-          <p>{ country.name }</p>  
-        </div>  
-      ))
-     } 
+    <div>
+      {data &&
+        data.map((item: { name: any; id: any }) => {
+          const { name, id } = item
+          return <p key={id}>{name}</p>
+        })}
     </div>
   )
 }
-
 export default App
-
-
