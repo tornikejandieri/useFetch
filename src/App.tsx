@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       {data &&
-        data.map((item: { name: any; id: any }) => {
+        data.map((item: { name: string; id: number }) => {
           const { name, id } = item
           return <p key={id}>{name}</p>
         })}
